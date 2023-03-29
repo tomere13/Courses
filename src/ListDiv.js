@@ -26,6 +26,7 @@ function ListDiv({ id, headline, description, summary }) {
   const [state, setState] = useState({ chapters: [] })
   const [playing, setPlaying] = useState(false)
   const videoRef = useRef(null)
+  const [selectedCourseId, setSelectedCourseId] = useState(null)
 
   useEffect(() => {
     var newState = getObjectById(chapterData, id)
@@ -33,7 +34,8 @@ function ListDiv({ id, headline, description, summary }) {
   }, [])
 
   const handleButtonClick = () => {
-    setPlaying(!playing)
+    setSelectedCourseId(id)
+    setPlaying(true)
   }
 
   const handleVideoClick = () => {
@@ -50,31 +52,39 @@ function ListDiv({ id, headline, description, summary }) {
 
   return (
     <div className="list-div">
-      <h3>{headline}</h3>
-      <section className="rectangle">
-        <p>{state.chapters.length} videos</p>
-      </section>
-      <section>
-        <h4>{description}</h4>
+      {selectedCourseId === null ? (
+        // Show all course information and chapter lists
+        <>
+          <h3>{headline}</h3>
+          <section className="rectangle">
+            <p>{state.chapters.length} videos</p>
+          </section>
+          <section>
+            <h4>{description}</h4>
 
-        <ul>
-          {summary.map((text, index) => (
-            <li key={index}>{text}</li>
-          ))}
-        </ul>
-      </section>
+            <ul>
+              {summary.map((text, index) => (
+                <li key={index}>{text}</li>
+              ))}
+            </ul>
+          </section>
 
-      <button className="btn" onClick={handleButtonClick}>
-        <FontAwesomeIcon icon={faAngleRight} />
-      </button>
+          <button className="btn" onClick={handleButtonClick}>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </button>
 
-      {playing && (
-        <div className="video-container" onClick={handleVideoClick}>
-          <video ref={videoRef} src={videoUrl} controls autoPlay />
-        </div>
+          <ChapterList chapters={state.chapters.slice(1)} />
+        </>
+      ) : (
+        // Show only video and chapter list for selected course
+        <>
+          <div className="video-container" onClick={handleVideoClick}>
+            <video ref={videoRef} src={videoUrl} controls autoPlay />
+          </div>
+
+          <ChapterList chapters={state.chapters} />
+        </>
       )}
-
-      {!playing && <ChapterList chapters={state.chapters.slice(1)} />}
     </div>
   )
 }
