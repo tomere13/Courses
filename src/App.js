@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import data from './data.json'
+import ListDiv from './ListDiv'
 
 function App() {
+  console.log(data.result)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {data.result.map((per) => {
+        return (
+          <div key={per.id}>
+            <ListDiv
+              id={per.id}
+              headline={per.headline}
+              description={per.description}
+              summary={per.summary}
+            />
+          </div>
+        )
+      })}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
