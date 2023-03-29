@@ -1,11 +1,10 @@
-// Importing the necessary CSS, JSON data, and React components
 import './App.css'
 import data from './data.json'
 import ListDiv from './ListDiv'
 import React, { useState, useEffect, useRef } from 'react'
 import chapterData from './chapterData.json'
+import ChapterList from './ChaptersList'
 
-// The main function that renders the application
 function App() {
   // Setting up the necessary state variables and useRef hook
   const [showCourse, setShowCourse] = useState(null)
@@ -43,34 +42,6 @@ function App() {
       setState({ ...state, chapters: updatedChapters })
     }
     setFinishedVideos(finishedVideos + 1)
-  }
-
-  // A component to render a list of chapters
-  function ChapterList({ chapters }) {
-    const [selectedChapter, setSelectedChapter] = useState(null)
-
-    const handleChapterClick = (chapter) => {
-      setSelectedChapter(chapter)
-      setVideoUrl(chapter.asset.resource.stream.url)
-    }
-
-    return (
-      <div className="chapter-list">
-        <h4>Chapters</h4>
-        <ul>
-          {chapters.map((chapter, index) => (
-            <li
-              onClick={() => handleChapterClick(chapter)}
-              key={index}
-              className={selectedChapter === chapter ? 'selected' : ''}>
-              {/* Add a checkmark icon if the chapter is checked */}
-              {chapter.checked ? <span>&#10003; </span> : null}
-              {chapter.title}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )
   }
 
   // Setting up two useEffect hooks to update the state variables based on changes
@@ -113,7 +84,7 @@ function App() {
           </div>
           <div>
             <h2>{state.headline}</h2>
-            <ChapterList chapters={state.chapters} />
+            <ChapterList chapters={state.chapters} setVideoUrl={setVideoUrl} />
             <p>Finished videos: {finishedVideos}</p>
           </div>
         </>
