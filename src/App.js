@@ -70,8 +70,9 @@ function App() {
     // This useEffect hook updates the video URL when the state changes
 
     if (state && state.chapters[0]?.asset?.resource?.stream?.url) {
-      if (videoUrl === '')
+      if (videoUrl === '') {
         setVideoUrl(state.chapters[0].asset.resource.stream.url)
+      }
     }
   }, [state])
 

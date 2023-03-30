@@ -7,7 +7,7 @@ function ChapterList({ chapters, setVideoUrl }) {
     setSelectedChapter(chapter)
     setVideoUrl(chapter.asset.resource.stream.url)
   }
-  var locals = JSON.parse(localStorage.getItem('watchedChapters'))
+  var locals = JSON.parse(localStorage.getItem('watchedChapters')) || []
   return (
     <div className="chapter-list">
       <h4>Chapters</h4>
