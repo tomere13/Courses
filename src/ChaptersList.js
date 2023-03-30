@@ -1,6 +1,6 @@
 import React, { useState, memo } from 'react'
 
-function ChapterList({ chapters, setVideoUrl }) {
+function ChapterList({ chapters, setVideoUrl, headline }) {
   const [selectedChapter, setSelectedChapter] = useState(null)
 
   const handleChapterClick = (chapter) => {
@@ -12,13 +12,14 @@ function ChapterList({ chapters, setVideoUrl }) {
     <div className="chapter-list">
       <h4>Chapters</h4>
       <ol>
+        {console.log(chapters)}
         {chapters.map((chapter, index) => (
           <li
             onClick={() => handleChapterClick(chapter)}
             key={index}
             className={selectedChapter === chapter ? 'selected' : ''}>
             {/* Add a checkmark icon if the chapter is checked */}
-            {chapter.checked || locals.includes(chapter.id) ? (
+            {locals.includes(chapter.id + headline) ? (
               <span>&#10003; </span>
             ) : null}
             {chapter.title}

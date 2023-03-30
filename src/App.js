@@ -21,7 +21,7 @@ function App() {
     const index = state.chapters.findIndex(
       (chapter) => chapter.asset.resource.stream.url === videoUrl
     )
-
+    var check = JSON.parse(localStorage.getItem('watchedChapters')) || []
     if (index !== -1) {
       const currentTime = playerRef.current.getCurrentTime()
       const watchedAtLeast10Seconds = currentTime >= 10
@@ -29,9 +29,12 @@ function App() {
       if (watchedAtLeast10Seconds) {
         const chapterId = state.chapters[index].id
         const chapterIsChecked = state.chapters[index].checked
-
-        if (!chapterIsChecked) {
-          setFinishedVideos((prev) => prev + 1)
+        console.log(state)
+        if (!check.includes(chapterId + state.headline)) {
+          console.log(finishedVideos)
+          setFinishedVideos(finishedVideos + 1)
+          console.log(finishedVideos)
+          localStorage.setItem(state.headline, finishedVideos + 1)
         }
 
         const updatedChapters = [...state.chapters]
@@ -44,7 +47,7 @@ function App() {
         const watchedChapters =
           JSON.parse(localStorage.getItem('watchedChapters')) || []
         if (!watchedChapters.includes(chapterId)) {
-          watchedChapters.push(chapterId)
+          watchedChapters.push(chapterId + state.headline)
           localStorage.setItem(
             'watchedChapters',
             JSON.stringify(watchedChapters)
@@ -102,8 +105,18 @@ function App() {
           </div>
           <div>
             <h2>{state.headline}</h2>
-            <ChapterList chapters={state.chapters} setVideoUrl={setVideoUrl} />
-            <p>Finished videos: {finishedVideos}</p>
+            <ChapterList
+              chapters={state.chapters}
+              setVideoUrl={setVideoUrl}
+              headline={state.headline}
+            />
+            <p>
+              Finished videos:
+              {localStorage.getItem(state.headline)
+                ? localStorage.getItem(state.headline)
+                : finishedVideos}{' '}
+              / {state.chapters.length}
+            </p>
           </div>
         </>
       )}
