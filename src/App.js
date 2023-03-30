@@ -8,7 +8,6 @@ import './App.css'
 
 function App() {
   // Setting up the necessary state variables and useRef hook
-
   const [showCourse, setShowCourse] = useState(null)
   const [state, setState] = useState({ chapters: [] })
   const [videoUrl, setVideoUrl] = useState('')
@@ -21,23 +20,29 @@ function App() {
     const index = state.chapters.findIndex(
       (chapter) => chapter.asset.resource.stream.url === videoUrl
     )
+
     if (parseInt(x) === state.chapters.length) {
       localStorage.setItem(state.headline + '1', 1)
     }
+
     localStorage.setItem(state.headline + state.chapters[index], videoUrl)
     localStorage.setItem(
       state.chapters[index].id + state.headline,
       e.playedSeconds
     )
+
     var check = JSON.parse(localStorage.getItem('watchedChapters')) || []
+
     if (index !== -1) {
       const currentTime = playerRef.current.getCurrentTime()
       const watchedAtLeast10Seconds = currentTime >= 10
 
       if (watchedAtLeast10Seconds) {
         const chapterId = state.chapters[index].id
+
         if (!check.includes(chapterId + state.headline)) {
           setFinishedVideos(parseInt(x) || finishedVideos + 1)
+
           if (x) {
             localStorage.setItem(state.headline, parseInt(x) + 1)
           } else {
@@ -50,10 +55,12 @@ function App() {
           ...updatedChapters[index],
           checked: true,
         }
+
         setState({ ...state, chapters: updatedChapters })
 
         const watchedChapters =
           JSON.parse(localStorage.getItem('watchedChapters')) || []
+
         if (!watchedChapters.includes(chapterId + state.headline)) {
           watchedChapters.push(chapterId + state.headline)
           localStorage.setItem(
@@ -67,31 +74,28 @@ function App() {
 
   // Setting up two useEffect hooks to update the state variables based on changes
 
+  // This useEffect hook updates the state variables when a course is selected
   useEffect(() => {
-    // This useEffect hook updates the state variables when a course is selected
-
     if (showCourse !== null) {
-      const selectedCourse = chapterData.find((obj) => obj.id === showCourse.id)
+      const selectedCourse = chapterData.find(
+        (obj) => obj.id === showCourse?.id
+      )
       setState(selectedCourse)
       setFinishedVideos(0)
     }
   }, [showCourse])
 
+  // This useEffect hook updates the video URL when the state changes
   useEffect(() => {
-    // This useEffect hook updates the video URL when the state changes
-
     if (state && state.chapters[0]?.asset?.resource?.stream?.url) {
-      if (videoUrl === '') {
-        setVideoUrl(
-          localStorage.getItem(state.headline + state.description) ||
-            state.chapters[0].asset.resource.stream.url
-        )
-      }
+      setVideoUrl(
+        localStorage.getItem(state.headline + state.description) ||
+          state.chapters[0].asset.resource.stream.url
+      )
     }
   }, [state])
 
   // Rendering the main div that contains the course list or the video player
-
   return (
     <div className="outDivList">
       {showCourse === null ? (
@@ -111,8 +115,7 @@ function App() {
                 const index = state.chapters.findIndex(
                   (chapter) => chapter.asset.resource.stream.url === videoUrl
                 )
-                console.log(state)
-                console.log(index)
+
                 if (index < state.chapters.length - 1) {
                   setVideoUrl(
                     state.chapters[index + 1].asset.resource.stream.url
@@ -145,9 +148,6 @@ function App() {
               onProgress={(e) => handleVideoProgress(e)}
               controls={true}
               onReady={(e) => {
-                const index = state.chapters.findIndex(
-                  (chapter) => chapter.asset.resource.stream.url === videoUrl
-                )
                 localStorage.setItem(
                   state.headline + state.description,
                   e.props.url
@@ -179,5 +179,4 @@ function App() {
     </div>
   )
 }
-
 export default App

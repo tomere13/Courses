@@ -1,4 +1,4 @@
-import React, { useState, memo, useEffect } from 'react'
+import React, { useState, memo } from 'react'
 
 function ChapterList({ chapters, setVideoUrl, headline }) {
   const [selectedChapter, setSelectedChapter] = useState(null)
@@ -7,7 +7,10 @@ function ChapterList({ chapters, setVideoUrl, headline }) {
     setSelectedChapter(chapter)
     setVideoUrl(chapter.asset.resource.stream.url)
   }
-  var locals = JSON.parse(localStorage.getItem('watchedChapters')) || []
+
+  const watchedChapters =
+    JSON.parse(localStorage.getItem('watchedChapters')) || []
+
   return (
     <div className="chapter-list">
       <h4>Chapters</h4>
@@ -18,7 +21,7 @@ function ChapterList({ chapters, setVideoUrl, headline }) {
             key={index}
             className={selectedChapter === chapter ? 'selected' : ''}>
             {/* Add a checkmark icon if the chapter is checked */}
-            {locals.includes(chapter.id + headline) ? (
+            {watchedChapters.includes(chapter.id + headline) ? (
               <span>&#10003; </span>
             ) : null}
             {chapter.title}
@@ -33,4 +36,5 @@ function ChapterList({ chapters, setVideoUrl, headline }) {
     </div>
   )
 }
+
 export default memo(ChapterList)
