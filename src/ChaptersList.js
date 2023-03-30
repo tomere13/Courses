@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, memo } from 'react'
 
 function ChapterList({ chapters, setVideoUrl }) {
   const [selectedChapter, setSelectedChapter] = useState(null)
@@ -11,14 +11,16 @@ function ChapterList({ chapters, setVideoUrl }) {
   return (
     <div className="chapter-list">
       <h4>Chapters</h4>
-      <ul>
+      <ol>
         {chapters.map((chapter, index) => (
           <li
             onClick={() => handleChapterClick(chapter)}
             key={index}
             className={selectedChapter === chapter ? 'selected' : ''}>
             {/* Add a checkmark icon if the chapter is checked */}
-            {chapter.checked ? <span>&#10003; </span> : null}
+            {chapter.checked || localStorage.getItem(chapter.title) ? (
+              <span>&#10003; </span>
+            ) : null}
             {chapter.title}
             {`${Math.floor(chapter.asset.resource.duration / 60)}:${Math.round(
               chapter.asset.resource.duration % 60
@@ -27,8 +29,8 @@ function ChapterList({ chapters, setVideoUrl }) {
               .padStart(2, '0')}`}
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   )
 }
-export default ChapterList
+export default memo(ChapterList)

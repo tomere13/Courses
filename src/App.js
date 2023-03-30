@@ -1,54 +1,56 @@
-import './App.css'
+import React, { useState, useEffect, useRef } from 'react'
 import data from './data.json'
 import ListDiv from './ListDiv'
-import React, { useState, useEffect, useRef } from 'react'
 import chapterData from './chapterData.json'
 import ChapterList from './ChaptersList'
+import ReactPlayer from 'react-player'
+import './App.css'
 
 function App() {
   // Setting up the necessary state variables and useRef hook
+
   const [showCourse, setShowCourse] = useState(null)
   const [state, setState] = useState({ chapters: [] })
   const [videoUrl, setVideoUrl] = useState('')
   const [finishedVideos, setFinishedVideos] = useState(0)
-  const videoRef = useRef(null)
+  const playerRef = useRef(null)
 
-  // A function to find an object in an array based on its ID
-  function getObjectById(array, id) {
-    return array.find((obj) => obj.id === id)
-  }
+  // A function to handle the end of the video
 
-  // A function to handle clicking on the video
-  const handleVideoClick = () => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        videoRef.current.play()
-      } else {
-        videoRef.current.pause()
+  const handleVideoProgress = () => {
+    const index = state.chapters.findIndex(
+      (chapter) => chapter.asset.resource.stream.url === videoUrl
+    )
+
+    if (index !== -1) {
+      const currentTime = playerRef.current.getCurrentTime()
+      const watchedAtLeast10Seconds = currentTime >= 10
+
+      if (watchedAtLeast10Seconds) {
+        const chapterIsChecked = state.chapters[index].checked
+
+        if (!chapterIsChecked) {
+          setFinishedVideos((prev) => prev + 1)
+        }
+
+        const updatedChapters = [...state.chapters]
+        updatedChapters[index] = {
+          ...updatedChapters[index],
+          checked: true,
+        }
+        setState({ ...state, chapters: updatedChapters })
+        localStorage.setItem(state.title, state.id)
       }
     }
   }
 
-  // A function to handle the end of the video
-  const handleVideoEnd = () => {
-    // Find the index of the current chapter in the chapters array
-    const index = state.chapters.findIndex(
-      (chapter) => chapter.asset.resource.stream.url === videoUrl
-    )
-    if (index !== -1) {
-      // Update the checked property of the current chapter to true
-      const updatedChapters = [...state.chapters]
-      updatedChapters[index] = { ...updatedChapters[index], checked: true }
-      setState({ ...state, chapters: updatedChapters })
-    }
-    setFinishedVideos(finishedVideos + 1)
-  }
-
   // Setting up two useEffect hooks to update the state variables based on changes
+
   useEffect(() => {
     // This useEffect hook updates the state variables when a course is selected
+
     if (showCourse !== null) {
-      const selectedCourse = getObjectById(chapterData, showCourse.id)
+      const selectedCourse = chapterData.find((obj) => obj.id === showCourse.id)
       setState(selectedCourse)
       setFinishedVideos(0)
     }
@@ -56,12 +58,15 @@ function App() {
 
   useEffect(() => {
     // This useEffect hook updates the video URL when the state changes
+
     if (state && state.chapters[0]?.asset?.resource?.stream?.url) {
-      setVideoUrl(state.chapters[0].asset.resource.stream.url)
+      if (videoUrl === '')
+        setVideoUrl(state.chapters[0].asset.resource.stream.url)
     }
   }, [state])
 
   // Rendering the main div that contains the course list or the video player
+
   return (
     <div className="outDivList">
       {showCourse === null ? (
@@ -74,12 +79,14 @@ function App() {
         </>
       ) : (
         <>
-          <div className="video-container" onClick={handleVideoClick}>
-            <video
-              ref={videoRef}
-              src={videoUrl}
-              controls
-              onEnded={handleVideoEnd}
+          <div className="video-container">
+            <ReactPlayer
+              url={videoUrl}
+              onProgress={handleVideoProgress}
+              controls={true}
+              ref={playerRef}
+              width="100%"
+              height="100%"
             />
           </div>
           <div>

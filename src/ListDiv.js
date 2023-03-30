@@ -5,15 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 
-function getObjectById(array, id) {
-  return array.find((obj) => obj.id === id)
-}
-
 function ListDiv({ id, headline, description, summary, setShowCourse }) {
   const [state, setState] = useState({ chapters: [] })
 
   useEffect(() => {
-    var newState = getObjectById(chapterData, id)
+    var newState = chapterData.find((obj) => obj.id === id)
     setState(newState)
   }, [])
 
