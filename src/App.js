@@ -17,9 +17,14 @@ function App() {
 
   // A function to handle the end of the video
 
-  const handleVideoProgress = () => {
+  const handleVideoProgress = (e) => {
     const index = state.chapters.findIndex(
       (chapter) => chapter.asset.resource.stream.url === videoUrl
+    )
+    localStorage.setItem(state.headline + state.chapters[index], videoUrl)
+    localStorage.setItem(
+      state.chapters[index].id + state.headline,
+      e.playedSeconds
     )
     var check = JSON.parse(localStorage.getItem('watchedChapters')) || []
     if (index !== -1) {
@@ -28,12 +33,8 @@ function App() {
 
       if (watchedAtLeast10Seconds) {
         const chapterId = state.chapters[index].id
-        const chapterIsChecked = state.chapters[index].checked
-        console.log(state)
         if (!check.includes(chapterId + state.headline)) {
-          console.log(finishedVideos)
           setFinishedVideos(finishedVideos + 1)
-          console.log(finishedVideos)
           localStorage.setItem(state.headline, finishedVideos + 1)
         }
 
@@ -74,7 +75,10 @@ function App() {
 
     if (state && state.chapters[0]?.asset?.resource?.stream?.url) {
       if (videoUrl === '') {
-        setVideoUrl(state.chapters[0].asset.resource.stream.url)
+        setVideoUrl(
+          localStorage.getItem(state.headline + state.description) ||
+            state.chapters[0].asset.resource.stream.url
+        )
       }
     }
   }, [state])
@@ -96,11 +100,44 @@ function App() {
           <div className="video-container">
             <ReactPlayer
               url={videoUrl}
-              onProgress={handleVideoProgress}
+              onDuration={() => {
+                const index = state.chapters.findIndex(
+                  (chapter) => chapter.asset.resource.stream.url === videoUrl
+                )
+
+                if (
+                  parseInt(
+                    localStorage.getItem(
+                      state.chapters[index].id + state.headline
+                    )
+                  ) +
+                    1 >
+                  state.chapters[index].asset.resource.duration
+                ) {
+                  playerRef.current.seekTo(0)
+                } else {
+                  playerRef.current.seekTo(
+                    localStorage.getItem(
+                      state.chapters[index].id + state.headline
+                    ) || 0
+                  )
+                }
+              }}
+              onProgress={(e) => handleVideoProgress(e)}
               controls={true}
+              onReady={(e) => {
+                const index = state.chapters.findIndex(
+                  (chapter) => chapter.asset.resource.stream.url === videoUrl
+                )
+                localStorage.setItem(
+                  state.headline + state.description,
+                  e.props.url
+                )
+              }}
               ref={playerRef}
               width="100%"
               height="100%"
+              plating={true}
             />
           </div>
           <div>

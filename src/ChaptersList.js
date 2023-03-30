@@ -12,7 +12,6 @@ function ChapterList({ chapters, setVideoUrl, headline }) {
     <div className="chapter-list">
       <h4>Chapters</h4>
       <ol>
-        {console.log(chapters)}
         {chapters.map((chapter, index) => (
           <li
             onClick={() => handleChapterClick(chapter)}
