@@ -16,11 +16,14 @@ function App() {
   const playerRef = useRef(null)
 
   // A function to handle the end of the video
-
+  var x = localStorage.getItem(state.headline) || null
   const handleVideoProgress = (e) => {
     const index = state.chapters.findIndex(
       (chapter) => chapter.asset.resource.stream.url === videoUrl
     )
+    if (parseInt(x) === state.chapters.length) {
+      localStorage.setItem(state.headline + '1', 1)
+    }
     localStorage.setItem(state.headline + state.chapters[index], videoUrl)
     localStorage.setItem(
       state.chapters[index].id + state.headline,
@@ -34,8 +37,12 @@ function App() {
       if (watchedAtLeast10Seconds) {
         const chapterId = state.chapters[index].id
         if (!check.includes(chapterId + state.headline)) {
-          setFinishedVideos(finishedVideos + 1)
-          localStorage.setItem(state.headline, finishedVideos + 1)
+          setFinishedVideos(parseInt(x) || finishedVideos + 1)
+          if (x) {
+            localStorage.setItem(state.headline, parseInt(x) + 1)
+          } else {
+            localStorage.setItem(state.headline, 1)
+          }
         }
 
         const updatedChapters = [...state.chapters]
@@ -47,7 +54,7 @@ function App() {
 
         const watchedChapters =
           JSON.parse(localStorage.getItem('watchedChapters')) || []
-        if (!watchedChapters.includes(chapterId)) {
+        if (!watchedChapters.includes(chapterId + state.headline)) {
           watchedChapters.push(chapterId + state.headline)
           localStorage.setItem(
             'watchedChapters',
@@ -100,6 +107,18 @@ function App() {
           <div className="video-container">
             <ReactPlayer
               url={videoUrl}
+              onEnded={() => {
+                const index = state.chapters.findIndex(
+                  (chapter) => chapter.asset.resource.stream.url === videoUrl
+                )
+                console.log(state)
+                console.log(index)
+                if (index < state.chapters.length - 1) {
+                  setVideoUrl(
+                    state.chapters[index + 1].asset.resource.stream.url
+                  )
+                }
+              }}
               onDuration={() => {
                 const index = state.chapters.findIndex(
                   (chapter) => chapter.asset.resource.stream.url === videoUrl
@@ -137,7 +156,7 @@ function App() {
               ref={playerRef}
               width="100%"
               height="100%"
-              plating={true}
+              playing={true}
             />
           </div>
           <div>

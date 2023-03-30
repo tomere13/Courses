@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import './list.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faCamera, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 function ListDiv({ id, headline, description, summary, setShowCourse }) {
   const [state, setState] = useState({ chapters: [] })
@@ -26,6 +26,12 @@ function ListDiv({ id, headline, description, summary, setShowCourse }) {
     <div className="list-div">
       <>
         <h3>{headline}</h3>
+        {localStorage.getItem(state.headline + '1') ? (
+          <FontAwesomeIcon icon={faCheck} />
+        ) : (
+          ''
+        )}
+
         <div className="infoBox">
           <section className="rectangle">
             <p>

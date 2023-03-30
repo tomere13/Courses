@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import React, { useState, memo, useEffect } from 'react'
 
 function ChapterList({ chapters, setVideoUrl, headline }) {
   const [selectedChapter, setSelectedChapter] = useState(null)
