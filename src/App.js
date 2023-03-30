@@ -27,6 +27,7 @@ function App() {
       const watchedAtLeast10Seconds = currentTime >= 10
 
       if (watchedAtLeast10Seconds) {
+        const chapterId = state.chapters[index].id
         const chapterIsChecked = state.chapters[index].checked
 
         if (!chapterIsChecked) {
@@ -39,7 +40,16 @@ function App() {
           checked: true,
         }
         setState({ ...state, chapters: updatedChapters })
-        localStorage.setItem(state.title, state.id)
+
+        const watchedChapters =
+          JSON.parse(localStorage.getItem('watchedChapters')) || []
+        if (!watchedChapters.includes(chapterId)) {
+          watchedChapters.push(chapterId)
+          localStorage.setItem(
+            'watchedChapters',
+            JSON.stringify(watchedChapters)
+          )
+        }
       }
     }
   }

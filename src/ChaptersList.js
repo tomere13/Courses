@@ -7,7 +7,7 @@ function ChapterList({ chapters, setVideoUrl }) {
     setSelectedChapter(chapter)
     setVideoUrl(chapter.asset.resource.stream.url)
   }
-
+  var locals = JSON.parse(localStorage.getItem('watchedChapters'))
   return (
     <div className="chapter-list">
       <h4>Chapters</h4>
@@ -18,7 +18,7 @@ function ChapterList({ chapters, setVideoUrl }) {
             key={index}
             className={selectedChapter === chapter ? 'selected' : ''}>
             {/* Add a checkmark icon if the chapter is checked */}
-            {chapter.checked || localStorage.getItem(chapter.title) ? (
+            {chapter.checked || locals.includes(chapter.id) ? (
               <span>&#10003; </span>
             ) : null}
             {chapter.title}
