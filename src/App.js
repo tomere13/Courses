@@ -166,6 +166,7 @@ function App() {
                 }
               }}
               onProgress={(e) => handleVideoProgress(e)}
+              progressInterval={100}
               controls={true}
               onReady={(e) => {
                 localStorage.setItem(
