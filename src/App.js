@@ -71,6 +71,16 @@ function App() {
       }
     }
   }
+  useEffect(() => {
+    // Add event listener for the onpopstate event
+    window.onpopstate = function (event) {
+      // Check if the event's state is null
+      if (event.state === null) {
+        // Reload or rerender the page
+        window.location.reload()
+      }
+    }
+  }, [])
 
   // Setting up two useEffect hooks to update the state variables based on changes
 
@@ -82,6 +92,12 @@ function App() {
       )
       setState(selectedCourse)
       setFinishedVideos(0)
+
+      // Update the URL with a hash to indicate that a course has been selected
+      window.history.pushState({ selectedCourse }, '', `#${selectedCourse.id}`)
+    } else {
+      // If no course is selected, remove the hash from the URL
+      window.history.replaceState(null, '', window.location.pathname)
     }
   }, [showCourse])
 
