@@ -97,7 +97,7 @@ function App() {
       window.history.pushState(
         { selectedCourse },
         '',
-        `#${selectedCourse.id + state.headline}`
+        `#${selectedCourse.id + selectedCourse.headline}`
       )
     } else {
       // If no course is selected, remove the hash from the URL
