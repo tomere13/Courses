@@ -94,7 +94,11 @@ function App() {
       setFinishedVideos(0)
 
       // Update the URL with a hash to indicate that a course has been selected
-      window.history.pushState({ selectedCourse }, '', `#${selectedCourse.id}`)
+      window.history.pushState(
+        { selectedCourse },
+        '',
+        `#${selectedCourse.id + state.headline}`
+      )
     } else {
       // If no course is selected, remove the hash from the URL
       window.history.replaceState(null, '', window.location.pathname)
