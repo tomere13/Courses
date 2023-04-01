@@ -4,6 +4,8 @@ import ChapterList from './ChaptersList'
 import ReactPlayer from 'react-player'
 import './App.css'
 import fetchData from './fetchData'
+import { RiAwardLine } from 'react-icons/ri'
+
 function App() {
   // Setting up the necessary state variables and useRef hook
   const [showCourse, setShowCourse] = useState(null)
@@ -125,92 +127,114 @@ function App() {
 
   // Rendering the main div that contains the course list or the video player
   return (
-    <div className="outDivList">
-      {showCourse === null && chapterData !== null ? (
-        <>
-          {data?.result?.map((per, index) => (
-            <div key={index}>
-              <ListDiv
-                setShowCourse={setShowCourse}
-                index={index}
-                {...per}
-                state={state}
-              />
-            </div>
-          ))}
-        </>
+    <>
+      {showCourse === null ? (
+        <div className="startText">
+          <h1>BIGVU 101 Crush Course</h1>
+          <p>
+            Zero editing expirence to pro - your joureny starts here
+            <br></br>
+            Watch step-by-step video lessons how to make videos with impact
+          </p>
+        </div>
       ) : (
-        <>
-          <div className="video-container">
-            <ReactPlayer
-              url={videoUrl}
-              onEnded={() => {
-                const index = state.chapters.findIndex(
-                  (chapter) => chapter.asset.resource.stream.url === videoUrl
-                )
-
-                if (index < state.chapters.length - 1) {
-                  setVideoUrl(
-                    state.chapters[index + 1].asset.resource.stream.url
-                  )
-                }
-              }}
-              onDuration={() => {
-                const index = state.chapters.findIndex(
-                  (chapter) => chapter.asset.resource.stream.url === videoUrl
-                )
-
-                if (
-                  parseInt(
-                    localStorage.getItem(
-                      state.chapters[index].id + state.headline
-                    )
-                  ) +
-                    1 >
-                  state.chapters[index].asset.resource.duration
-                ) {
-                  playerRef.current.seekTo(0)
-                } else {
-                  playerRef.current.seekTo(
-                    localStorage.getItem(
-                      state.chapters[index].id + state.headline
-                    ) || 0
-                  )
-                }
-              }}
-              onProgress={(e) => handleVideoProgress(e)}
-              progressInterval={100}
-              controls={true}
-              onReady={(e) => {
-                localStorage.setItem(
-                  state.headline + state.description,
-                  e.props.url
-                )
-              }}
-              ref={playerRef}
-              width="100%"
-              height="100%"
-              playing={true}
-            />
-          </div>
-          <div>
-            <h2>{state.headline}</h2>
-            <ChapterList
-              chapters={state.chapters}
-              setVideoUrl={setVideoUrl}
-              headline={state.headline}
-            />
-            <p>
-              Finished videos:
-              {localStorage.getItem(state.headline)
-                ? localStorage.getItem(state.headline)
-                : finishedVideos}{' '}
-              / {state.chapters.length}
-            </p>
-          </div>
-        </>
+        ''
       )}
-    </div>
+
+      <div className="outDivList">
+        {showCourse === null && chapterData !== null ? (
+          <>
+            {data?.result?.map((per, index) => (
+              <div key={index}>
+                <ListDiv
+                  setShowCourse={setShowCourse}
+                  index={index}
+                  {...per}
+                  state={state}
+                />
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            <div className="video-container">
+              <div className="player-video">
+                <ReactPlayer
+                  url={videoUrl}
+                  onEnded={() => {
+                    const index = state.chapters.findIndex(
+                      (chapter) =>
+                        chapter.asset.resource.stream.url === videoUrl
+                    )
+
+                    if (index < state.chapters.length - 1) {
+                      setVideoUrl(
+                        state.chapters[index + 1].asset.resource.stream.url
+                      )
+                    }
+                  }}
+                  onDuration={() => {
+                    const index = state.chapters.findIndex(
+                      (chapter) =>
+                        chapter.asset.resource.stream.url === videoUrl
+                    )
+
+                    if (
+                      parseInt(
+                        localStorage.getItem(
+                          state.chapters[index].id + state.headline
+                        )
+                      ) +
+                        1 >
+                      state.chapters[index].asset.resource.duration
+                    ) {
+                      playerRef.current.seekTo(0)
+                    } else {
+                      playerRef.current.seekTo(
+                        localStorage.getItem(
+                          state.chapters[index].id + state.headline
+                        ) || 0
+                      )
+                    }
+                  }}
+                  onProgress={(e) => handleVideoProgress(e)}
+                  progressInterval={100}
+                  controls={true}
+                  onReady={(e) => {
+                    localStorage.setItem(
+                      state.headline + state.description,
+                      e.props.url
+                    )
+                  }}
+                  ref={playerRef}
+                  width="100%"
+                  height="100%"
+                  playing={true}
+                />
+              </div>
+              <div className="chapter-list">
+                <div className="header-list">
+                  <div className="finished-videos">
+                    <RiAwardLine /> <i data-eva="github"></i>
+                    {localStorage.getItem(state.headline)
+                      ? localStorage.getItem(state.headline)
+                      : finishedVideos}{' '}
+                    / {state.chapters.length}
+                  </div>
+                </div>
+                <h2>{state.headline}</h2>
+
+                <ChapterList
+                  chapters={state.chapters}
+                  setVideoUrl={setVideoUrl}
+                  headline={state.headline}
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </>
   )
 }
 export default App

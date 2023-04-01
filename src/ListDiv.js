@@ -32,11 +32,12 @@ function ListDiv({ id, headline, description, summary, setShowCourse, state }) {
   return (
     <div className="list-div">
       <>
-        <h3>{headline}</h3>
-        {localStorage.getItem(`${newState.headline}1`) && (
-          <FontAwesomeIcon icon={faCheck} />
-        )}
-
+        <h3>
+          {headline + ' '}
+          {localStorage.getItem(`${newState.headline}1`) && (
+            <FontAwesomeIcon icon={faCheck} />
+          )}
+        </h3>
         <div className="infoBox">
           <section className="rectangle">
             <p>

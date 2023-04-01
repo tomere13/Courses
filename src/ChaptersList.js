@@ -1,4 +1,6 @@
 import React, { useState, memo } from 'react'
+import { RiCheckLine } from 'react-icons/ri'
+import { AiOutlinePlayCircle } from 'react-icons/ai'
 
 function ChapterList({ chapters, setVideoUrl, headline }) {
   const [selectedChapter, setSelectedChapter] = useState(null)
@@ -12,28 +14,46 @@ function ChapterList({ chapters, setVideoUrl, headline }) {
     JSON.parse(localStorage.getItem('watchedChapters')) || []
 
   return (
-    <div className="chapter-list">
-      <h4>Chapters</h4>
-      <ol>
-        {chapters.map((chapter, index) => (
-          <li
-            onClick={() => handleChapterClick(chapter)}
-            key={index}
-            className={selectedChapter === chapter ? 'selected' : ''}>
-            {/* Add a checkmark icon if the chapter is checked */}
-            {watchedChapters.includes(chapter.id + headline) ? (
-              <span>&#10003; </span>
-            ) : null}
-            {chapter.title}
-            {`${Math.floor(chapter.asset.resource.duration / 60)}:${Math.round(
-              chapter.asset.resource.duration % 60
-            )
-              .toString()
-              .padStart(2, '0')}`}
-          </li>
-        ))}
-      </ol>
-    </div>
+    <>
+      <div className="chapter-box">
+        <ol
+          style={{ listStyleType: 'none', position: 'relative', right: '12%' }}>
+          {chapters.map((chapter, index) => (
+            <section className="line">
+              <li
+                onClick={() => handleChapterClick(chapter)}
+                key={index}
+                className={selectedChapter === chapter ? 'selected' : ''}
+                style={{ paddingLeft: '2rem' }}>
+                <span
+                  className="check-icon"
+                  style={{ position: 'relative', marginRight: '8px' }}>
+                  {watchedChapters.includes(chapter.id + headline) ? (
+                    <RiCheckLine style={{ fontSize: '18px', color: 'green' }} />
+                  ) : (
+                    <AiOutlinePlayCircle style={{ fontSize: '18px' }} />
+                  )}
+                </span>
+                <span className="hover-txt">
+                  {index + 1}. {chapter.title}
+                </span>
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: '110%',
+                  }}>
+                  {`${Math.floor(
+                    chapter.asset.resource.duration / 60
+                  )}:${Math.round(chapter.asset.resource.duration % 60)
+                    .toString()
+                    .padStart(2, '0')}`}
+                </span>
+              </li>
+            </section>
+          ))}
+        </ol>
+      </div>
+    </>
   )
 }
 
