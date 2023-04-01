@@ -87,7 +87,14 @@
   grid-template-columns: 50% 50%;
   list-style: none;
 }
-
+@media only screen and (max-width: 600px) {
+  .listPoints {
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: 50% 60%;
+    list-style: none;
+  }
+}
 .listPoints li::before {
   content: '• ';
   color: blue;
