@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "proxy": "https://tomere13.netlify.app/.netlify/functions/express",
+  "proxy": "https://tomere13.netlify.app/.netlify/functions/server",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
