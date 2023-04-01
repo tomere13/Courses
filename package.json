@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "proxy": "https://sage-gaufre-1327af.netlify.app/.netlify/functions/server",
+  "proxy": "https://sage-gaufre-1327af.netlify.app/.netlify/functions/express",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
