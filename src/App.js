@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import data from './data.json'
 import ListDiv from './ListDiv'
 import chapterData from './chapterData.json'
 import ChapterList from './ChaptersList'
@@ -9,6 +8,8 @@ import './App.css'
 function App() {
   // Setting up the necessary state variables and useRef hook
   const [showCourse, setShowCourse] = useState(null)
+  const [data, setData] = useState({})
+
   const [state, setState] = useState({ chapters: [] })
   const [videoUrl, setVideoUrl] = useState('')
   const [finishedVideos, setFinishedVideos] = useState(0)
@@ -71,6 +72,20 @@ function App() {
       }
     }
   }
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/data')
+      const fetchedData = await response.json()
+      setData(fetchedData)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   useEffect(() => {
     // Add event listener for the onpopstate event
     window.onpopstate = function (event) {
@@ -120,7 +135,7 @@ function App() {
     <div className="outDivList">
       {showCourse === null ? (
         <>
-          {data.result.map((per, index) => (
+          {data?.result?.map((per, index) => (
             <div key={index}>
               <ListDiv setShowCourse={setShowCourse} index={index} {...per} />
             </div>
