@@ -1,16 +1,16 @@
-import chapterData from './chapterData.json'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './list.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { faCamera, faCheck } from '@fortawesome/free-solid-svg-icons'
+import fetchData from './fetchData'
 
-function ListDiv({ id, headline, description, summary, setShowCourse }) {
-  const [state, setState] = useState({ chapters: [] })
+function ListDiv({ id, headline, description, summary, setShowCourse, state }) {
+  const [chapterData, setChapterData] = useState([])
+  const [data, setData] = useState({})
 
   useEffect(() => {
-    const newState = chapterData.find((obj) => obj.id === id)
-    setState(newState)
+    fetchData(setData, setChapterData)
   }, [])
 
   const handleButtonClick = () => {
@@ -20,6 +20,12 @@ function ListDiv({ id, headline, description, summary, setShowCourse }) {
       description,
       summary,
     })
+  }
+
+  var newState = { chapters: [] }
+  if (chapterData) {
+    const foundChapterData = chapterData.find((obj) => obj.id === id)
+    newState = foundChapterData ? foundChapterData : newState
   }
 
   return (
@@ -34,7 +40,7 @@ function ListDiv({ id, headline, description, summary, setShowCourse }) {
           <section className="rectangle">
             <p>
               <FontAwesomeIcon icon={faCamera} />
-              {state.chapters.length} videos
+              {newState.chapters ? newState.chapters.length : 0} videos
             </p>
           </section>
           <section>

@@ -9,13 +9,12 @@ app.use(cors())
 app.get('/api/data', async (req, res) => {
   try {
     const fetch = await import('node-fetch')
-    const authHeader = 'bigvu:interview'
-    const encodedAuthHeader = btoa(authHeader)
     const response = await fetch.default(
       'https://interviews.bigvu.tv/course/list',
       {
         headers: {
-          Authorization: 'Basic ' + encodedAuthHeader,
+          Authorization:
+            'Basic ' + Buffer.from('bigvu:interview').toString('base64'),
         },
       }
     )
@@ -27,6 +26,25 @@ app.get('/api/data', async (req, res) => {
   }
 })
 
+app.get('/api/course/:id', async (req, res) => {
+  try {
+    const fetch = await import('node-fetch')
+    const response = await fetch.default(
+      `https://interviews.bigvu.tv/course/${req.params.id}`,
+      {
+        headers: {
+          Authorization:
+            'Basic ' + Buffer.from('bigvu:interview').toString('base64'),
+        },
+      }
+    )
+    const courseData = await response.json()
+    res.json(courseData)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Error fetching data')
+  }
+})
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })

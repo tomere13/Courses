@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ListDiv from './ListDiv'
-import chapterData from './chapterData.json'
 import ChapterList from './ChaptersList'
 import ReactPlayer from 'react-player'
 import './App.css'
-
+import fetchData from './fetchData'
 function App() {
   // Setting up the necessary state variables and useRef hook
   const [showCourse, setShowCourse] = useState(null)
   const [data, setData] = useState({})
-
+  const [chapterData, setchapterData] = useState([])
   const [state, setState] = useState({ chapters: [] })
   const [videoUrl, setVideoUrl] = useState('')
   const [finishedVideos, setFinishedVideos] = useState(0)
@@ -72,18 +71,10 @@ function App() {
       }
     }
   }
-  const fetchData = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/data')
-      const fetchedData = await response.json()
-      setData(fetchedData)
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
+  //loads the data
   useEffect(() => {
-    fetchData()
+    fetchData(setData, setchapterData)
   }, [])
 
   useEffect(() => {
@@ -97,23 +88,25 @@ function App() {
     }
   }, [])
 
-  // Setting up two useEffect hooks to update the state variables based on changes
-
   // This useEffect hook updates the state variables when a course is selected
   useEffect(() => {
     if (showCourse !== null) {
       const selectedCourse = chapterData.find(
         (obj) => obj.id === showCourse?.id
       )
-      setState(selectedCourse)
-      setFinishedVideos(0)
-
+      if (selectedCourse) {
+        setState(selectedCourse)
+        setFinishedVideos(0)
+        window.history.pushState(
+          { selectedCourse },
+          '',
+          `#${selectedCourse.id + selectedCourse.headline}`
+        )
+      } else {
+        setShowCourse(null)
+        alert('Sorry for the inconvenience, the course is not available.')
+      }
       // Update the URL with a hash to indicate that a course has been selected
-      window.history.pushState(
-        { selectedCourse },
-        '',
-        `#${selectedCourse.id + selectedCourse.headline}`
-      )
     } else {
       // If no course is selected, remove the hash from the URL
       window.history.replaceState(null, '', window.location.pathname)
@@ -133,11 +126,16 @@ function App() {
   // Rendering the main div that contains the course list or the video player
   return (
     <div className="outDivList">
-      {showCourse === null ? (
+      {showCourse === null && chapterData !== null ? (
         <>
           {data?.result?.map((per, index) => (
             <div key={index}>
-              <ListDiv setShowCourse={setShowCourse} index={index} {...per} />
+              <ListDiv
+                setShowCourse={setShowCourse}
+                index={index}
+                {...per}
+                state={state}
+              />
             </div>
           ))}
         </>
