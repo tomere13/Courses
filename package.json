@@ -36,7 +36,7 @@
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"npm run start-server\"",
     "build": "CI= react-scripts build",
-    "express-build": "concurrently \"CI= react-scripts build\" \"npm run start-server\"",
+    "express-build": "concurrently \"CI= react-scripts build\" \"node server.js\"",
     "start-server": "node server.js"
   },
   "eslintConfig": {
