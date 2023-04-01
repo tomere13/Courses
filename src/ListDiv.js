@@ -8,6 +8,7 @@ import fetchData from './fetchData'
 function ListDiv({ id, headline, description, summary, setShowCourse, state }) {
   const [chapterData, setChapterData] = useState([])
   const [data, setData] = useState({})
+  const lengthCourse = 0
 
   useEffect(() => {
     fetchData(setData, setChapterData)
@@ -32,7 +33,7 @@ function ListDiv({ id, headline, description, summary, setShowCourse, state }) {
     <div className="list-div">
       <>
         <h3>{headline}</h3>
-        {localStorage.getItem(`${state.headline}1`) && (
+        {localStorage.getItem(`${newState.headline}1`) && (
           <FontAwesomeIcon icon={faCheck} />
         )}
 
