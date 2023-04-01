@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "proxy": "http://localhost:3001",
+  "proxy": "https://tomere13.netlify.app/.netlify/functions/express",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"npm run start-server\"",
-    "build": "concurrently \"CI= react-scripts build\" \"npm run start-server\"",
+    "build": "CI= react-scripts build",
     "test": "react-scripts test",
     "start-server": "node server.js",
     "eject": "react-scripts eject"
