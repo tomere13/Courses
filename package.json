@@ -35,6 +35,7 @@
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"npm run start-server\"",
     "build": "CI= react-scripts build",
+    "express-build": "concurrently \"react-scripts build\" \"npm run start-server\"",
     "test": "react-scripts test",
     "start-server": "node server.js",
     "eject": "react-scripts eject"
