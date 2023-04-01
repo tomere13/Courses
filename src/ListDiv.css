@@ -1,0 +1,101 @@
+.listDiv {
+  float: right;
+}
+
+.blue {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  background: linear-gradient(270deg, #28b3f7 0.65%, #506aff 99.35%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.green {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  background: linear-gradient(90deg, #00ea3b 0%, #00d096 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.orange {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  background: linear-gradient(270deg, #f79f28 0.65%, #ff5350 99.35%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.faVideo {
+  color: white;
+  height: 20px;
+  width: 20px;
+  align-self: center;
+}
+
+.videos {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.nextBtn {
+  width: 48px;
+  height: 48px;
+  left: 308px;
+  top: 116px;
+  margin-right: 15px;
+  align-self: center;
+}
+
+.description {
+  width: 196px;
+  height: 44px;
+  left: 16px;
+  top: 65px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  font-feature-settings: 'calt' off;
+  color: #253658;
+  margin-left: 15px;
+  margin-top: 30px;
+}
+
+.listPoints {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: 50% 50%;
+  list-style: none;
+}
+
+.listPoints li::before {
+  content: '• ';
+  color: blue;
+  font-size: 18px;
+}
+
+.listPointsDiv {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}

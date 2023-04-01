@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import './list.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { faCamera, faCheck } from '@fortawesome/free-solid-svg-icons'
+import {
+  faVideo,
+  faCheck,
+  faCircleChevronRight,
+} from '@fortawesome/free-solid-svg-icons'
 import fetchData from './fetchData'
+import './ListDiv.css'
 
-function ListDiv({ id, headline, description, summary, setShowCourse, state }) {
+function ListDiv({
+  id,
+  headline,
+  description,
+  summary,
+  setShowCourse,
+  img,
+  color,
+}) {
   const [chapterData, setChapterData] = useState([])
   const [data, setData] = useState({})
   const lengthCourse = 0
@@ -33,29 +45,32 @@ function ListDiv({ id, headline, description, summary, setShowCourse, state }) {
     <div className="list-div">
       <>
         <h3>
-          {headline + ' '}
+          <span className={color}>{headline + ' '}</span>
           {localStorage.getItem(`${newState.headline}1`) && (
             <FontAwesomeIcon icon={faCheck} />
           )}
         </h3>
         <div className="infoBox">
+          <img className="listDiv" src={img}></img>
           <section className="rectangle">
-            <p>
-              <FontAwesomeIcon icon={faCamera} />
+            <FontAwesomeIcon icon={faVideo} className="faVideo" />
+            <span className="videos">
               {newState.chapters ? newState.chapters.length : 0} videos
-            </p>
+            </span>
           </section>
-          <section>
-            <h4>{description}</h4>
-            <ul>
+          <div className="description">{description}</div>
+          <div className="listPointsDiv">
+            <ul className="listPoints">
               {summary.map((text, index) => (
                 <li key={index}>{text}</li>
               ))}
             </ul>
-            <button className="btn" onClick={handleButtonClick}>
-              <FontAwesomeIcon icon={faAngleRight} />
-            </button>
-          </section>
+            <FontAwesomeIcon
+              className="nextBtn"
+              icon={faCircleChevronRight}
+              onClick={handleButtonClick}
+            />
+          </div>
         </div>
       </>
     </div>

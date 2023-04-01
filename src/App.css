@@ -1,97 +1,94 @@
+html {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
 body {
   margin: auto;
-  width: 50%;
   padding: 10px;
-
   font-family: 'Inter';
   font-style: normal;
   font-size: 12px;
   line-height: 29px;
-  /* identical to box height */
-
-  /* BlueBlack/100 */
-
   color: #253658;
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  height: 100%;
 }
 .chapter-list {
-  position: fixed;
-  height: 100%;
-  width: 100%;
+  height: 70%;
+  width: 30%;
+  margin-left: 20px;
 }
-.hover-txt:hover {
-  color: #00abfe;
+.line:hover {
+  background: rgba(0, 171, 254, 0.08);
   padding: 2px; /* reduce padding to make hover effect more narrow */
   margin: 2px; /* reduce margin to make hover effect more narrow */
 }
 .chapter-box {
   align-items: left;
+  flex-direction: column;
   display: flex;
-  position: absolute;
-  height: 53%;
   width: 88%;
   border: 1px solid rgba(123, 141, 177, 0.6);
   border-radius: 10px;
+  padding-left: 10px;
 }
 .startText {
-  position: fixed;
-  left: 2%;
+  margin-left: 15px;
 }
 .video-container {
-  position: relative;
-  width: 100%;
+  display: flex;
+  justify-content: space-around;
   height: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  width: 100%;
+  align-items: center;
 }
 
 .player-video {
-  position: absolute;
-  top: 20%;
-  left: 0;
-  width: 150%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
+  border: 1px solid rgba(123, 141, 177, 0.6);
+  border-radius: 10px;
 }
-.headerList {
-  position: fixed;
-}
-.finished-videos {
-  /* Blue/8
 
-#00ABFE
-*/
-  position: absolute;
-  left: 40%;
-  top: 3%;
-  width: 8%;
+.finished-videos {
   background: rgba(0, 171, 254, 0.08);
   border-radius: 40px;
-}
-.outDivList {
-  align-items: center;
+  width: 50px;
+  height: 30px;
   display: flex;
-  position: absolute;
-  width: 30%;
-  height: 20%;
-  left: 2%;
-  top: 20%;
+  align-items: center;
+  margin-left: 10px;
 }
+
+.outDivList {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  column-gap: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .outDivList {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .chapter-list {
   box-sizing: border-box;
+  width: 50%;
+}
 
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 932px;
-  top: 230px;
+.header-list {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
 
-  background: #ffffff;
-  /* DeadBlue/60
-
-#7B8DB1
-*/
+.line {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
 }

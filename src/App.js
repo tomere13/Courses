@@ -5,6 +5,15 @@ import ReactPlayer from 'react-player'
 import './App.css'
 import fetchData from './fetchData'
 import { RiAwardLine } from 'react-icons/ri'
+import blueImg from './images/blue.png'
+import greenImg from './images/green.png'
+import orangeImg from './images/orange.png'
+
+const coloring = [
+  { color: 'blue', img: blueImg },
+  { color: 'green', img: greenImg },
+  { color: 'orange', img: orangeImg },
+]
 
 function App() {
   // Setting up the necessary state variables and useRef hook
@@ -141,20 +150,20 @@ function App() {
         ''
       )}
 
-      <div className="outDivList">
+      <>
         {showCourse === null && chapterData !== null ? (
-          <>
+          <div className="outDivList">
             {data?.result?.map((per, index) => (
-              <div key={index}>
-                <ListDiv
-                  setShowCourse={setShowCourse}
-                  index={index}
-                  {...per}
-                  state={state}
-                />
-              </div>
+              <ListDiv
+                key={index}
+                setShowCourse={setShowCourse}
+                index={index}
+                {...per}
+                img={coloring[index % 3].img}
+                color={coloring[index % 3].color}
+              />
             ))}
-          </>
+          </div>
         ) : (
           <>
             <div className="video-container">
@@ -214,6 +223,7 @@ function App() {
               </div>
               <div className="chapter-list">
                 <div className="header-list">
+                  <h3>{state.headline}</h3>
                   <div className="finished-videos">
                     <RiAwardLine /> <i data-eva="github"></i>
                     {localStorage.getItem(state.headline)
@@ -222,7 +232,6 @@ function App() {
                     / {state.chapters.length}
                   </div>
                 </div>
-                <h2>{state.headline}</h2>
 
                 <ChapterList
                   chapters={state.chapters}
@@ -233,7 +242,7 @@ function App() {
             </div>
           </>
         )}
-      </div>
+      </>
     </>
   )
 }
