@@ -25,6 +25,7 @@ function ListDiv({
   useEffect(() => {
     fetchData(setData, setChapterData)
   }, [])
+  const listClassName = `listPoints${color}`
 
   const handleButtonClick = () => {
     setShowCourse({
@@ -60,7 +61,7 @@ function ListDiv({
           </section>
           <div className="description">{description}</div>
           <div className="listPointsDiv">
-            <ul className="listPoints">
+            <ul className={listClassName}>
               {summary.map((text, index) => (
                 <li key={index}>{text}</li>
               ))}

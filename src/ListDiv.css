@@ -81,12 +81,6 @@
   margin-top: 30px;
 }
 
-.listPoints {
-  width: 100%;
-  display: inline-grid;
-  grid-template-columns: 50% 50%;
-  list-style: none;
-}
 @media only screen and (max-width: 600px) {
   .listPoints {
     width: 100%;
@@ -95,9 +89,37 @@
     list-style: none;
   }
 }
-.listPoints li::before {
+.listPointsblue {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: 50% 50%;
+  list-style: none;
+}
+.listPointsblue li::before {
   content: '• ';
   color: blue;
+  font-size: 18px;
+}
+.listPointsgreen {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: 50% 50%;
+  list-style: none;
+}
+.listPointsgreen li::before {
+  content: '• ';
+  color: rgb(28, 255, 28);
+  font-size: 18px;
+}
+.listPointsorange {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: 50% 50%;
+  list-style: none;
+}
+.listPointsorange li::before {
+  content: '• ';
+  color: orange;
   font-size: 18px;
 }
 

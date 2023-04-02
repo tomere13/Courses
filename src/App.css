@@ -80,6 +80,54 @@ body {
   width: 50%;
 }
 @media only screen and (max-width: 600px) {
+  .listPointsDiv {
+    margin-top: 0px;
+    font-size: 9px;
+    margin-left: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  body {
+    margin: auto;
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 12px;
+    line-height: 29px;
+    color: #253658;
+    height: 100%;
+  }
+  .nextBtn {
+    display: none;
+    width: 48px;
+    height: 48px;
+    left: 308px;
+    top: 116px;
+    margin-right: 15px;
+    align-self: center;
+  }
+  ul {
+    padding: 0%;
+  }
+  .listPointsDiv {
+    display: flex;
+    justify-content: space-between;
+  }
+  img {
+    width: 50%;
+  }
+  .list-div {
+    max-width: 73%;
+    float: left;
+    top: 144px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 0%;
+  }
+  .startText {
+    font-size: 9px;
+    margin-left: 15px;
+    margin-right: 57px;
+  }
   .outDivList {
     display: flex;
     flex-direction: column;
