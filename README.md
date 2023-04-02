@@ -4,8 +4,8 @@
 </h2>
         <ol> 
         <li>Clone this repository to your local machine.</li>
-        <li>Navigate to the project directory and run npm install to install the required dependencies.</li>
-        <li>Start the development server by running npm start. This will launch both the React app and the Express server concurrently.</li>
+        <li>Navigate to the project directory and run <b>npm install</b> to install the required dependencies.</li>
+        <li>Start the development server by running <b>npm start</b>. This will launch both the React app and the Express server concurrently.</li>
         </ol>
     <ul>
     <h2>Dependencies</h2>
