@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import ListDiv from './ListDiv'
 import ChapterList from './ChaptersList'
@@ -10,6 +10,7 @@ import { RiAwardLine } from 'react-icons/ri'
 import blueImg from './images/blue.png'
 import greenImg from './images/green.png'
 import orangeImg from './images/orange.png'
+import logo from './images/logo.png'
 
 const coloring = [
   { color: 'blue', img: blueImg },
@@ -85,6 +86,9 @@ function App() {
   // Rendering the main div that contains the course list or the video player
   return (
     <>
+      <div style={{ paddingBottom: '0px', textAlign: 'center' }}>
+        <img src={logo} alt="Logo" style={{ height: '35%', width: '35%' }} />
+      </div>
       {showCourse === null ? (
         <div className="startText">
           {console.log(data)}
