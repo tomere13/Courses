@@ -181,6 +181,11 @@ body {
     border-radius: 10px;
     padding-left: 6px;
   }
+  .infoBox {
+    border: 1px solid rgba(123, 141, 177, 0.6);
+    border-radius: 20px;
+    height: 50%;
+  }
 }
 
 .header-list {
