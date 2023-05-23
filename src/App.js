@@ -98,7 +98,7 @@ function App() {
         <div className="startText">
           {console.log(data)}
           <h1>{data[0]?.snippet?.channelTitle + ' Crush Courses'} </h1>
-          <p>Watch step-by-step video lessons how to make videos with impact</p>
+          <p>Enjoy watching!</p>
         </div>
       ) : (
         ''
