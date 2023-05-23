@@ -90,7 +90,7 @@ body {
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
   }
   body {
     margin: auto;
