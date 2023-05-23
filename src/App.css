@@ -87,11 +87,10 @@ body {
 }
 @media only screen and (max-width: 600px) {
   .listPointsDiv {
-    margin-top: 0px;
-    font-size: 9px;
-    margin-left: 5px;
+    margin-top: 15px;
     display: flex;
     justify-content: space-between;
+    flex-direction: row-reverse;
   }
   body {
     margin: auto;
@@ -104,8 +103,8 @@ body {
   }
   .nextBtn {
     /* display: none; */
-    width: 48px;
-    height: 48px;
+    width: 24px;
+    height: 24px;
     left: 308px;
     top: 116px;
     margin-right: 15px;
