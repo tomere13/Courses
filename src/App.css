@@ -103,6 +103,7 @@ body {
   }
   .nextBtn {
     /* display: none; */
+    padding: 10px;
     width: 24px;
     height: 24px;
     left: 308px;
