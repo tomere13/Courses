@@ -68,6 +68,7 @@ function ListDiv({
               className="nextBtn"
               icon={faPlay}
               onClick={handleButtonClick}
+              style={{ paddingTop: '10px' }}
             />
           </div>
         </div>
