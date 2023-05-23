@@ -62,7 +62,7 @@ body {
 .finished-videos {
   background: rgba(0, 171, 254, 0.08);
   border-radius: 40px;
-  width: 50px;
+  width: 60px;
   height: 30px;
   display: flex;
   align-items: center;

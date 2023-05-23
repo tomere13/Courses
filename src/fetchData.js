@@ -1,24 +1,15 @@
-const fetchData = async (setData, setchapterData) => {
-  try {
-    const response = await fetch('http://localhost:3001/api/data')
-    const fetchedData = await response.json()
-    setData(fetchedData)
-    if (!fetchedData.result) {
-      throw new Error('Fetched data is missing the result array')
-    }
+const API_KEY = 'AIzaSyB4XKXUPP0q9f_eF0dDaLIUcjDexy5eHaE'
+const CHANNEL_ID = 'UC8S4rDRZn6Z_StJ-hh7ph8g'
 
-    // Fetch course data for each course ID
-    const courseDataPromises = fetchedData.result.map(async (course) => {
-      const courseResponse = await fetch(
-        `http://localhost:3001/api/course/${course.id}`
-      )
-      const courseData = await courseResponse.json()
-      return courseData
-    })
-    const courseData = await Promise.all(courseDataPromises)
-    setchapterData(courseData)
+const fetchData = async (setData) => {
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=${CHANNEL_ID}&key=${API_KEY}`
+    )
+    const data = await response.json()
+    setData(data.items)
   } catch (error) {
-    console.error(error)
+    console.error('Error fetching playlists:', error)
   }
 }
 

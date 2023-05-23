@@ -1,45 +1,42 @@
+import fetchVideos from './fetchVideos'
+
 import React, { useEffect, useState } from 'react'
 import './list.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faVideo,
-  faCheck,
   faCircleChevronRight,
 } from '@fortawesome/free-solid-svg-icons'
-import fetchData from './fetchData'
+// import fetchData from './fetchData'
 import './ListDiv.css'
 
 function ListDiv({
   id,
   headline,
   description,
-  summary,
+  // summary,
   setShowCourse,
+  setState,
   img,
   color,
 }) {
-  const [chapterData, setChapterData] = useState([])
-  const [data, setData] = useState({})
-  const lengthCourse = 0
+  const [chapter, setChapter] = useState([])
+  // const [data, setData] = useState({})
 
   useEffect(() => {
-    fetchData(setData, setChapterData)
+    // useEffect hook to fetch data when component mounts
+    fetchVideos(id, setChapter)
   }, [])
-  const listClassName = `listPoints${color}`
 
   const handleButtonClick = () => {
+    fetchVideos(id, setState)
+
     setShowCourse({
       id,
       headline,
-      description,
-      summary,
-    })
-  }
-
-  var newState = { chapters: [] }
-  if (chapterData) {
-    const foundChapterData = chapterData.find((obj) => obj.id === id)
-    newState = foundChapterData ? foundChapterData : newState
+      // description,
+      // summary,
+    }) // function to set state of parent component with information of clicked course
   }
 
   return (
@@ -47,25 +44,23 @@ function ListDiv({
       <>
         <h3>
           <span className={color}>{headline + ' '}</span>
-          {localStorage.getItem(`${newState.headline}1`) && (
+          {/* {localStorage.getItem(`${headline}`) && (
             <FontAwesomeIcon icon={faCheck} />
-          )}
+          )} */}
         </h3>
         <div className="infoBox">
-          <img className="listDiv" src={img}></img>
+          <img className="listDiv" src={img} alt="Bigvu"></img>
           <section className="rectangle">
             <FontAwesomeIcon icon={faVideo} className="faVideo" />
-            <span className="videos">
-              {newState.chapters ? newState.chapters.length : 0} videos
-            </span>
+            <span className="videos">{chapter.length} videos</span>
           </section>
           <div className="description">{description}</div>
           <div className="listPointsDiv">
-            <ul className={listClassName}>
+            {/* <ul className={listClassName}>
               {summary.map((text, index) => (
                 <li key={index}>{text}</li>
               ))}
-            </ul>
+            </ul> */}
             <FontAwesomeIcon
               className="nextBtn"
               icon={faCircleChevronRight}
@@ -78,4 +73,4 @@ function ListDiv({
   )
 }
 
-export default ListDiv
+export default ListDiv // export this component to be used in other files
