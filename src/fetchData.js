@@ -1,5 +1,5 @@
 const API_KEY = 'AIzaSyB4XKXUPP0q9f_eF0dDaLIUcjDexy5eHaE'
-const CHANNEL_ID = 'UC8S4rDRZn6Z_StJ-hh7ph8g'
+const CHANNEL_ID = 'UCUyDOdBWhC1MCxEjC46d-zw'
 
 const fetchData = async (setData) => {
   try {

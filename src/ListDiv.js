@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faVideo,
   faCircleChevronRight,
+  faPlay,
 } from '@fortawesome/free-solid-svg-icons'
 // import fetchData from './fetchData'
 import './ListDiv.css'
@@ -54,16 +55,18 @@ function ListDiv({
             <FontAwesomeIcon icon={faVideo} className="faVideo" />
             <span className="videos">{chapter.length} videos</span>
           </section>
-          <div className="description">{description}</div>
+          {console.log(description)}
+          <div className="description">Enter "{headline}" Course</div>
           <div className="listPointsDiv">
             {/* <ul className={listClassName}>
               {summary.map((text, index) => (
                 <li key={index}>{text}</li>
               ))}
             </ul> */}
+
             <FontAwesomeIcon
               className="nextBtn"
-              icon={faCircleChevronRight}
+              icon={faPlay}
               onClick={handleButtonClick}
             />
           </div>

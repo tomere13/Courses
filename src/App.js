@@ -87,7 +87,12 @@ function App() {
   return (
     <>
       <div style={{ paddingBottom: '0px', textAlign: 'center' }}>
-        <img src={logo} alt="Logo" style={{ height: '35%', width: '35%' }} />
+        <img
+          src={logo}
+          alt="Logo"
+          onClick={() => window.location.reload()}
+          style={{ height: '35%', width: '35%' }}
+        />
       </div>
       {showCourse === null ? (
         <div className="startText">
@@ -108,7 +113,7 @@ function App() {
                   key={index}
                   id={per?.id}
                   headline={per?.snippet?.localized?.title}
-                  // description={per.snippet.localized.description}
+                  pic={per.snippet.thumbnails.maxres.url}
                   setShowCourse={setShowCourse}
                   setState={setState}
                   index={index}
