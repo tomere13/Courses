@@ -142,7 +142,7 @@ body {
   }
   .outDivList {
     display: flex;
-    padding-left: 100px;
+    padding-left: 90px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
