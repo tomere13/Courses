@@ -87,18 +87,12 @@ function App() {
   return (
     <>
       <div style={{ paddingBottom: '0px', textAlign: 'center' }}>
-        <img
-          src={logo}
-          alt="Logo"
-          onClick={() => window.location.reload()}
-          style={{ height: '35%', width: '35%' }}
-        />
+        <img src={logo} alt="Logo" onClick={() => window.location.reload()} />
       </div>
       {showCourse === null ? (
         <div className="startText">
           {console.log(data)}
           <h1>{data[0]?.snippet?.channelTitle + ' Crush Courses'} </h1>
-          <p>Enjoy watching!</p>
         </div>
       ) : (
         ''

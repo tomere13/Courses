@@ -21,7 +21,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  background: linear-gradient(90deg, #00ea3b 0%, #00d096 100%);
+  background: linear-gradient(90deg, #0055ff 0%, #03359a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -34,7 +34,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  background: linear-gradient(270deg, #f79f28 0.65%, #ff5350 99.35%);
+  background: linear-gradient(270deg, #0d43af 0.65%, #019ec9 99.35%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -97,6 +97,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 140%;
+  padding-bottom: 15px;
   font-feature-settings: 'calt' off;
   color: #253658;
   margin-left: 15px;
@@ -145,7 +146,7 @@
 }
 .listPointsgreen li::before {
   content: '• ';
-  color: rgb(28, 255, 28);
+  color: rgb(46, 19, 180);
   font-size: 18px;
 }
 .listPointsorange {
@@ -156,7 +157,7 @@
 }
 .listPointsorange li::before {
   content: '• ';
-  color: orange;
+  color: rgb(18, 125, 247);
   font-size: 18px;
 }
 

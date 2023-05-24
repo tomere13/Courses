@@ -26,7 +26,7 @@ body {
   /* margin-left: 20px; */
 }
 .line:hover {
-  background: rgba(0, 171, 254, 0.08);
+  background: #76c4ff;
   padding: 2px; /* reduce padding to make hover effect more narrow */
   margin: 2px; /* reduce margin to make hover effect more narrow */
 }
@@ -66,7 +66,7 @@ body {
 }
 
 .finished-videos {
-  background: rgba(0, 171, 254, 0.08);
+  background: #76c4ff;
   border-radius: 40px;
   width: 60px;
   height: 30px;
@@ -79,6 +79,7 @@ body {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   column-gap: 20px;
+  padding-bottom: 50px;
 }
 
 .chapter-list {
@@ -188,7 +189,46 @@ body {
     height: 30%;
   }
 }
+/* Styles for the course boxes */
+.infoBox {
+  box-shadow: rgba(0, 120, 255, 0.4) 0px 5px, rgba(0, 120, 255, 0.3) 0px 10px,
+    rgba(0, 120, 255, 0.2) 0px 15px, rgba(0, 120, 255, 0.1) 0px 20px,
+    rgba(0, 120, 255, 0.05) 0px 25px;
 
+  background-color: #fafafa;
+  border-radius: 10px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.infoBox h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.infoBox p {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.infoBox .btn {
+  display: inline-block;
+  background-color: #428bca;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  padding-top: 10px;
+  transition: background-color 0.3s ease;
+}
 .header-list {
   display: flex;
   align-items: center;

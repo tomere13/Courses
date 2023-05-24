@@ -50,7 +50,6 @@ function ListDiv({
           )} */}
         </h3>
         <div className="infoBox">
-          <img className="listDiv" src={img} alt="Bigvu"></img>
           <section className="rectangle">
             <FontAwesomeIcon icon={faVideo} className="faVideo" />
             <span className="videos">{chapter.length} videos</span>
@@ -63,13 +62,19 @@ function ListDiv({
                 <li key={index}>{text}</li>
               ))}
             </ul> */}
-
-            <FontAwesomeIcon
+            <button
+              className="btn"
+              icon={faPlay}
+              onClick={handleButtonClick}
+              style={{ paddingTop: '10px' }}>
+              Select
+            </button>
+            {/* <FontAwesomeIcon
               className="nextBtn"
               icon={faPlay}
               onClick={handleButtonClick}
               style={{ paddingTop: '10px' }}
-            />
+            /> */}
           </div>
         </div>
       </>

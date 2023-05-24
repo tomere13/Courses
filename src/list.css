@@ -3,7 +3,7 @@
   width: 96.56px;
   height: 28px;
   margin: 15px;
-  background: rgba(37, 54, 88, 0.6);
+  background: rgba(0, 66, 197, 0.6);
   border-radius: 4px;
   display: flex;
   justify-content: space-around;
@@ -11,7 +11,8 @@
 .infoBox {
   border: 1px solid rgba(123, 141, 177, 0.6);
   border-radius: 20px;
-  height: 75%;
+  height: 60%;
+  width: 50%;
 }
 .chapter-button {
   display: flex;
