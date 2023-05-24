@@ -40,7 +40,11 @@ body {
   padding-left: 10px;
 }
 .startText {
+  display: flex;
   margin-left: 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .video-container {
   display: flex;
