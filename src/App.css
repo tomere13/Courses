@@ -196,6 +196,7 @@ body {
     border: 1px solid rgba(123, 141, 177, 0.6);
     border-radius: 20px;
     height: 30%;
+    width: 70%;
   }
 }
 /* Styles for the course boxes */
