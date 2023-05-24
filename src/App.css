@@ -85,6 +85,7 @@ body {
   column-gap: 20px;
   padding-bottom: 10px;
   padding-left: 200px;
+  overflow-wrap: break-word; /* Wrap the text into multiple lines */
 }
 
 .chapter-list {
@@ -137,8 +138,8 @@ body {
   }
   .startText {
     font-size: 9px;
-    margin-left: 75px;
-    margin-right: 60px;
+    margin-left: 77px;
+    margin-right: 62px;
   }
   .outDivList {
     display: flex;
@@ -215,6 +216,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  overflow-wrap: break-word; /* Wrap the text into multiple lines */
 }
 
 .infoBox h3 {
