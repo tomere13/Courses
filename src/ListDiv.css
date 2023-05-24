@@ -125,6 +125,7 @@
     color: #253658;
     margin-left: 15px;
     margin-top: 30px;
+    overflow-wrap: break-word; /* Wrap the text into multiple lines */
   }
 }
 .listPointsblue {
