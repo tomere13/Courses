@@ -141,6 +141,10 @@ body {
   }
   .outDivList {
     display: flex;
+    margin-left: 15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     flex-direction: column;
   }
   .player-video {
