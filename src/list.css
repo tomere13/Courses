@@ -24,6 +24,7 @@
   float: left;
   top: 144px;
   margin: 20px;
+  overflow-wrap: break-word; /* Wrap the text into multiple lines */
 }
 .list-div h3 {
   font-size: 24px;
