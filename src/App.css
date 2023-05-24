@@ -83,7 +83,8 @@ body {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   column-gap: 20px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
+  padding-left: 200px;
 }
 
 .chapter-list {
