@@ -49,11 +49,14 @@
 }
 
 .videos {
+  position: relative;
+  text-align: initial;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   color: #ffffff;
+  right: 18%;
 }
 
 .nextBtn {

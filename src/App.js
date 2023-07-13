@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import ListDiv from './ListDiv'
 import ChapterList from './ChaptersList'
@@ -7,16 +6,8 @@ import ReactPlayer from 'react-player'
 import './App.css'
 import fetchData from './fetchData'
 import { RiAwardLine } from 'react-icons/ri'
-import blueImg from './images/blue.png'
-import greenImg from './images/green.png'
-import orangeImg from './images/orange.png'
-import logo from './images/logo.png'
 
-const coloring = [
-  { color: 'blue', img: blueImg },
-  { color: 'green', img: greenImg },
-  { color: 'orange', img: orangeImg },
-]
+import logo from './images/logo.png'
 
 function App() {
   // Setting up the necessary state variables and useRef hook
@@ -100,22 +91,29 @@ function App() {
 
       <>
         {showCourse === null && chapterData !== null ? (
-          <div className="outDivList">
-            {Array.isArray(data) &&
-              data.map((per, index) => (
-                <ListDiv
-                  key={index}
-                  id={per?.id}
-                  headline={per?.snippet?.localized?.title}
-                  pic={per.snippet.thumbnails.maxres.url}
-                  setShowCourse={setShowCourse}
-                  setState={setState}
-                  index={index}
-                  img={coloring[index % 3].img}
-                  color={coloring[index % 3].color}
-                />
-              ))}
-          </div>
+          <>
+            <div className="page">
+              <div className="outDivList">
+                {Array.isArray(data) &&
+                  data.map((per, index) => (
+                    <ListDiv
+                      key={index}
+                      id={per?.id}
+                      headline={per?.snippet?.localized?.title}
+                      pic={per.snippet.thumbnails.maxres.url}
+                      setShowCourse={setShowCourse}
+                      setState={setState}
+                      index={index}
+                    />
+                  ))}
+              </div>
+            </div>
+            <div className="credits">
+              <p className="creditsFont">
+                Designed and Developed by Tomer Elimelech
+              </p>
+            </div>
+          </>
         ) : (
           <>
             <div className="video-container">

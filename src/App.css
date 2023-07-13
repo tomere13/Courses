@@ -20,6 +20,18 @@ body {
   color: #253658;
   height: 100%;
 }
+.credits {
+  border-radius: 41px;
+  margin: auto;
+  width: 80%;
+  height: 5%;
+  background: whitesmoke;
+}
+.creditsFont {
+  color: black;
+  font-size: 18px;
+  text-align: center;
+}
 .chapter-list {
   height: 70%;
   width: 30%;
@@ -87,7 +99,14 @@ body {
   padding-left: 200px;
   overflow-wrap: break-word; /* Wrap the text into multiple lines */
 }
+.page {
+  height: 80%;
 
+  border-radius: 10%;
+  width: 80%;
+  margin: auto;
+  background: #f2f2f3;
+}
 .chapter-list {
   box-sizing: border-box;
   width: 50%;
@@ -118,6 +137,7 @@ body {
     margin-right: 15px;
     align-self: center;
   }
+
   ul {
     padding: 0%;
   }
@@ -202,21 +222,16 @@ body {
 }
 /* Styles for the course boxes */
 .infoBox {
-  box-shadow: rgba(0, 120, 255, 0.4) 0px 5px, rgba(0, 120, 255, 0.3) 0px 10px,
-    rgba(0, 120, 255, 0.2) 0px 15px, rgba(0, 120, 255, 0.1) 0px 20px,
-    rgba(0, 120, 255, 0.05) 0px 25px;
-
-  background-color: #fafafa;
-  border-radius: 10px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  box-shadow: rgb(21 22 24 / 40%) 0px 5px, rgb(20 24 29 / 30%) 5px 10px,
+    rgba(0, 120, 255, 0.2) 0px 15px, rgb(155 160 167 / 10%) 0px 20px,
+    rgb(154 154 154 / 5%) 0px 25px;
+  background-color: #ffffff;
   padding: 20px;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow-wrap: break-word; /* Wrap the text into multiple lines */
+
+  overflow-wrap: break-word;
 }
 
 .infoBox h3 {

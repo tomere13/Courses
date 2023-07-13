@@ -49,11 +49,11 @@ function ListDiv({
             <FontAwesomeIcon icon={faCheck} />
           )} */}
         </h3>
+        <section className="rectangle">
+          <FontAwesomeIcon icon={faVideo} className="faVideo" />
+          <span className="videos">{chapter.length} videos</span>
+        </section>
         <div className="infoBox">
-          <section className="rectangle">
-            <FontAwesomeIcon icon={faVideo} className="faVideo" />
-            <span className="videos">{chapter.length} videos</span>
-          </section>
           {console.log(description)}
           <div className="description">Enter "{headline}" Course</div>
           <div className="listPointsDiv">
